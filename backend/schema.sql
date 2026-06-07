@@ -49,6 +49,8 @@ CREATE TABLE orders (
   total_amount DECIMAL(10, 2) NOT NULL,
   status VARCHAR(20) DEFAULT 'pending',
   shipping_address TEXT NOT NULL,
+  payment_method VARCHAR(50) DEFAULT 'MTN_MOMO',
+  payment_status VARCHAR(20) DEFAULT 'pending',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

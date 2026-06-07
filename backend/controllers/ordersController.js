@@ -24,8 +24,8 @@ const createOrder = async (req, res) => {
     }
 
     const [orderResult] = await connection.query(
-      'INSERT INTO orders (user_id, total_amount) VALUES (?, ?)',
-      [userId, total_amount]
+      'INSERT INTO orders (user_id, total_amount, payment_method, payment_status) VALUES (?, ?, ?, ?)',
+      [userId, total_amount, req.body.payment_method || 'MTN_MOMO', req.body.payment_status || 'pending']
     );
     const orderId = orderResult.insertId;
 

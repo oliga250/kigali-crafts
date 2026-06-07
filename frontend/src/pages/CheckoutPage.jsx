@@ -1,44 +1,36 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useCart } from '../context/CartContext';
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
-  const { cart, dispatch, cartTotal, cartCount } = useCart();
+  const { cart, cartTotal, cartCount } = useCart();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     address: ''
   });
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
 
-    try {
-      const res = await axios.post('http://localhost:5000/api/orders', {
-        ...formData,
-        items: cart.items.map(item => ({
-          product_id: item.id,
-          quantity: item.quantity,
-          price: item.price
-        })),
-        total_amount: cartTotal
-      });
+    const pendingOrder = {
+      ...formData,
+      items: cart.items.map(item => ({
+        product_id: item.id,
+        quantity: item.quantity,
+        price: item.price
+      })),
+      total_amount: cartTotal
+    };
 
-      dispatch({ type: 'CLEAR_CART' });
-      navigate(`/order-confirmation/${res.data.orderId}`);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
+    localStorage.setItem('pendingOrder', JSON.stringify(pendingOrder));
+    navigate('/payment');
   };
 
   if (cartCount === 0) {
@@ -103,10 +95,9 @@ export default function CheckoutPage() {
 
             <button
               type="submit"
-              disabled={loading}
-              className="w-full bg-green-700 text-white py-3 rounded-lg hover:bg-green-800 transition disabled:opacity-50"
+              className="w-full bg-green-700 text-white py-3 rounded-lg hover:bg-green-800 transition"
             >
-              {loading ? 'Placing Order...' : 'Place Order'}
+              Proceed to Payment
             </button>
           </form>
 
