@@ -12,8 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+app.get('/', (req, res) => {
+  res.json({ message: "Kigali Crafts API is running" });
 });
 
 // API Routes
