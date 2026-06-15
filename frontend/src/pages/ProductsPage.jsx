@@ -16,8 +16,8 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     try {
       const url = selectedCategory === 'All'
-        ? 'http://localhost:5000/api/products'
-        : `http://localhost:5000/api/products?category=${selectedCategory}`;
+        ? 'https://kigali-crafts-backend.vercel.app/api/products'
+        : `https://kigali-crafts-backend.vercel.app/api/products?category=${selectedCategory}`;
       const res = await axios.get(url);
       setProducts(res.data);
       setLoading(false);
