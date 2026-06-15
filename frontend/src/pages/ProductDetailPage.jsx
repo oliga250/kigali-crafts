@@ -17,7 +17,7 @@ export default function ProductDetailPage() {
 
   const fetchProduct = async () => {
     try {
-      const res = await axios.get(`https://kigali-crafts.vercel.app/_/backend/api/products/${id}`);
+      const res = await axios.get(`/api/products/${id}`);
       setProduct(res.data);
       setLoading(false);
     } catch (error) {
