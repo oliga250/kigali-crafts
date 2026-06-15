@@ -16,8 +16,8 @@ export default function HomePage() {
   const fetchProducts = async () => {
     try {
       const url = selectedCategory === 'All'
-        ? 'https://kigali-crafts-backend.vercel.app/api/products'
-        : `https://kigali-crafts-backend.vercel.app/api/products?category=${selectedCategory}`;
+        ? 'https://kigali-crafts.vercel.app/_/backend/api/products'
+        : `https://kigali-crafts.vercel.app/_/backend/api/products?category=${selectedCategory}`;
       const res = await axios.get(url);
       setProducts(res.data.slice(0, 6));
       setLoading(false);

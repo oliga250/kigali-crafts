@@ -41,7 +41,7 @@ export default function PaymentPage() {
 
     setTimeout(async () => {
       try {
-        const res = await axios.post('https://kigali-crafts-backend.vercel.app/api/orders', {
+        const res = await axios.post('https://kigali-crafts.vercel.app/_/backend/api/orders', {
           ...pendingOrder,
           payment_method: selectedPayment,
           payment_status: 'paid'

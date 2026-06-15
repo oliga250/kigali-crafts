@@ -8,10 +8,7 @@ const pool = require('./models/db');
 const app = express();
 
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://kigali-crafts-frontend.vercel.app'
-  ],
+  origin: '*',
   credentials: true
 }));
 app.use(express.json());
