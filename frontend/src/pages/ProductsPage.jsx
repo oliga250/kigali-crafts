@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import ProductCard from '../components/ProductCard';
+import api from '../utils/api';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -16,9 +16,9 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     try {
       const url = selectedCategory === 'All'
-        ? '/api/products'
-        : `/api/products?category=${selectedCategory}`;
-      const res = await axios.get(url);
+        ? '/products'
+        : `/products?category=${selectedCategory}`;
+      const res = await api.get(url);
       setProducts(res.data);
       setLoading(false);
     } catch (error) {

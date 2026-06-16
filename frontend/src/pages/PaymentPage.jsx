@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useCart } from '../context/CartContext';
+import api from '../utils/api';
 
 export default function PaymentPage() {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export default function PaymentPage() {
 
     setTimeout(async () => {
       try {
-        const res = await axios.post('/api/orders', {
+        const res = await api.post('/orders', {
           ...pendingOrder,
           payment_method: selectedPayment,
           payment_status: 'paid'

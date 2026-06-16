@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import { useCart } from '../context/CartContext';
 
 export default function ProductDetailPage() {
@@ -17,7 +17,7 @@ export default function ProductDetailPage() {
 
   const fetchProduct = async () => {
     try {
-      const res = await axios.get(`/api/products/${id}`);
+      const res = await api.get(`/products/${id}`);
       setProduct(res.data);
       setLoading(false);
     } catch (error) {

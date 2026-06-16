@@ -52,5 +52,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Deploy backend to Render
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+      - name: Deploy frontend to Render
+        run: curl -X POST ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
       - name: Print success message
         run: echo "Deployed to Render successfully"

@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: kigali-crafts-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        value: kigalicraftssecret123
+      - key: DB_HOST
+        value: mysql-26440c03-ishimweolivier865-58b9.d.aivencloud.com
+      - key: DB_PORT
+        value: 27253
+      - key: DB_NAME
+        value: defaultdb
+      - key: DB_USER
+        value: avnadmin
+      - key: DB_PASSWORD
+        sync: false
+
+  - type: web
+    name: kigali-crafts-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
