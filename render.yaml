@@ -15,11 +15,13 @@ services:
       - key: DB_PORT
         value: 27253
       - key: DB_NAME
-        value: defaultdb
+        value: kigali_crafts
       - key: DB_USER
         value: avnadmin
       - key: DB_PASSWORD
         sync: false
+      - key: DB_SSL
+        value: true
 
   - type: web
     name: kigali-crafts-frontend

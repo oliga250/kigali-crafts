@@ -8,7 +8,6 @@ const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
 if (missingEnvVars.length > 0) {
   console.error('❌ ERROR: Missing required environment variables:', missingEnvVars.join(', '));
   console.error('Please set these variables in your .env file');
-  process.exit(1);
 }
 
 const pool = mysql.createPool({

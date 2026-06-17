@@ -4,8 +4,9 @@ import api from '../utils/api';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const categories = ['All', 'Baskets', 'Jewelry', 'Wooden Crafts'];
 
@@ -22,7 +23,8 @@ export default function ProductsPage() {
       setProducts(res.data);
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error('Failed to fetch products:', error);
+      setError(error.message || 'Failed to load products. Please try again later.');
       setLoading(false);
     }
   };
@@ -31,6 +33,20 @@ export default function ProductsPage() {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-700"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-12 px-4">
+        <div className="container mx-auto">
+          <h1 className="text-3xl font-bold mb-6 text-gray-800">Our Products</h1>
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+            <p className="font-semibold">Unable to load products</p>
+            <p className="text-sm mt-1">{error}</p>
+          </div>
+        </div>
       </div>
     );
   }
