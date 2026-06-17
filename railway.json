@@ -1,0 +1,18 @@
+{
+  "services": [
+    {
+      "name": "backend",
+      "source": {
+        "path": "backend",
+        "dockerfile": "backend/Dockerfile"
+      }
+    },
+    {
+      "name": "frontend",
+      "source": {
+        "path": "frontend",
+        "dockerfile": "frontend/Dockerfile"
+      }
+    }
+  ]
+}
