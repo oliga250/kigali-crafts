@@ -1,3 +1,6 @@
-# This file should not be here - Railway should use backend/Dockerfile or frontend/Dockerfile
-# Keeping this placeholder to maintain the structure
-# Delete this file if not needed
+# This file should not be used for Railway deployment.
+# Railway will automatically detect and use:
+# - backend/Dockerfile for backend service
+# - frontend/Dockerfile for frontend service
+#
+# Delete this file to avoid confusion.
