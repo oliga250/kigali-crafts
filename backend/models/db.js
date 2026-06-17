@@ -6,10 +6,11 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT || 3306,
   database: process.env.DB_NAME || 'kigali_crafts',
   user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'oliga123',
+  password: process.env.DB_PASSWORD || '',
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
 });
 
 const promisePool = pool.promise();
